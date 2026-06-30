@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status — Insanity Shop</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    main { padding:130px 8% 80px; position:relative; z-index:1; max-width:900px; margin:0 auto; }
+    h1 { font-size:clamp(2rem,5vw,3rem); font-weight:800; text-align:center; margin-bottom:8px;
+      background:linear-gradient(135deg,#f0abfc,#c4b5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .subtitle { text-align:center; color:var(--muted); margin-bottom:48px; font-size:0.92rem; }
+    .uptime-bar {
+      background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.3);
+      border-radius:12px; padding:18px 24px; margin-bottom:36px;
+      display:flex; align-items:center; gap:14px;
+    }
+    .uptime-dot { width:14px; height:14px; border-radius:50%; background:#22c55e;
+      box-shadow:0 0 12px #22c55e; flex-shrink:0; }
+    .uptime-text { font-weight:600; font-size:1rem; }
+    .uptime-sub  { font-size:0.82rem; color:var(--muted); margin-top:2px; }
+
+    .section-title { font-size:1rem; font-weight:700; color:var(--muted);
+      letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+    .status-list { display:flex; flex-direction:column; gap:10px; margin-bottom:40px; }
+    .status-row {
+      background:rgba(22,0,42,0.75);
+      border:1px solid rgba(192,38,211,0.2);
+      border-radius:12px; padding:16px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+      transition:border-color 0.2s;
+    }
+    .status-row:hover { border-color:rgba(192,38,211,0.45); }
+    .row-left { display:flex; align-items:center; gap:14px; }
+    .row-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .dot-green  { background:#22c55e; box-shadow:0 0 8px #22c55e; }
+    .dot-yellow { background:#f59e0b; box-shadow:0 0 8px #f59e0b; }
+    .dot-red    { background:#ef4444; box-shadow:0 0 8px #ef4444; }
+    .row-name { font-weight:600; font-size:0.95rem; }
+    .row-ac   { font-size:0.78rem; color:var(--muted); margin-top:2px; }
+    .row-right { display:flex; align-items:center; gap:14px; }
+    .row-badge {
+      padding:4px 14px; border-radius:50px; font-size:0.78rem; font-weight:700;
+    }
+    .badge-ud  { background:rgba(34,197,94,0.18); color:#22c55e; border:1px solid rgba(34,197,94,0.35); }
+    .badge-upd { background:rgba(245,158,11,0.18); color:#f59e0b; border:1px solid rgba(245,158,11,0.35); }
+    .badge-det { background:rgba(239,68,68,0.18); color:#ef4444; border:1px solid rgba(239,68,68,0.35); }
+    .row-time  { font-size:0.78rem; color:var(--muted); white-space:nowrap; }
+
+    .last-update { text-align:center; color:var(--muted); font-size:0.82rem; margin-top:10px; }
+  </style>
+</head>
+<body>
+<div id="snow"></div>
+<header>
+  <a href="index.html" class="logo" data-sitename>INSANITY SHOP</a>
+  <nav>
+    <a href="index.html" class="btn-nav btn-home">← Accueil</a>
+    <a href="produits.html" class="btn-nav btn-products">Produits</a>
+    <a href="#" class="btn-nav btn-discord" data-discord rel="noopener noreferrer" target="_blank">Discord</a>
+  </nav>
+</header>
+
+<main>
+  <h1 data-reveal>Status</h1>
+  <p class="subtitle" data-reveal>Mise à jour en temps réel — dernière vérification il y a <span id="ago">quelques secondes</span></p>
+
+  <div class="uptime-bar" data-reveal>
+    <div class="uptime-dot"></div>
+    <div>
+      <div class="uptime-text">Tous les systèmes sont opérationnels</div>
+      <div class="uptime-sub">Uptime 30 jours : 99.8%</div>
+    </div>
+  </div>
+
+  <div data-reveal>
+    <div class="section-title">🎮 Jeux supportés</div>
+    <div class="status-list">
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Fortnite</div><div class="row-ac">EasyAntiCheat</div></div></div><div class="row-right"><span class="row-badge badge-ud">Undetected</span><span class="row-time">Updated today</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Warzone</div><div class="row-ac">RICOCHET</div></div></div><div class="row-right"><span class="row-badge badge-ud">Undetected</span><span class="row-time">Updated today</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Apex Legends</div><div class="row-ac">EasyAntiCheat</div></div></div><div class="row-right"><span class="row-badge badge-ud">Undetected</span><span class="row-time">Updated today</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Valorant</div><div class="row-ac">Vanguard</div></div></div><div class="row-right"><span class="row-badge badge-ud">Undetected</span><span class="row-time">Updated today</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Rust</div><div class="row-ac">EasyAntiCheat</div></div></div><div class="row-right"><span class="row-badge badge-ud">Undetected</span><span class="row-time">Updated today</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">PUBG</div><div class="row-ac">BattlEye</div></div></div><div class="row-right"><span class="row-badge badge-ud">Undetected</span><span class="row-time">Updated today</span></div></div>
+    </div>
+  </div>
+
+  <div data-reveal>
+    <div class="section-title">⚙️ Infrastructure</div>
+    <div class="status-list">
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Serveurs de distribution</div></div></div><div class="row-right"><span class="row-badge badge-ud">Opérationnel</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Support Discord</div></div></div><div class="row-right"><span class="row-badge badge-ud">En ligne</span></div></div>
+      <div class="status-row"><div class="row-left"><div class="row-dot dot-green"></div><div><div class="row-name">Système de licences</div></div></div><div class="row-right"><span class="row-badge badge-ud">Opérationnel</span></div></div>
+    </div>
+  </div>
+
+  <p class="last-update" data-reveal>Dernière mise à jour : <span id="lastUpdate"></span></p>
+</main>
+
+<footer>
+  <span>© 2026 <span data-sitename>Insanity Shop</span></span>
+  <span><a href="index.html">Accueil</a> · <a href="produits.html">Produits</a> · <a href="faq.html">FAQ</a> · <a href="cgv.html">CGV</a> · <a href="#" data-discord rel="noopener noreferrer" target="_blank">Discord</a></span>
+  <span>For educational purposes only</span>
+</footer>
+<div id="cookie-banner"><span>Ce site utilise des cookies. <a href="cgv.html">En savoir plus</a></span><button id="accept-cookies">Accepter</button></div>
+<script src="config.js"></script>
+<script src="shared.js"></script>
+<script>
+  const now = new Date();
+  document.getElementById('lastUpdate').textContent = now.toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  let seconds = 0;
+  setInterval(()=>{
+    seconds++;
+    const el = document.getElementById('ago');
+    if(seconds<60) el.textContent=`il y a ${seconds} secondes`;
+    else el.textContent=`il y a ${Math.floor(seconds/60)} minute(s)`;
+  },1000);
+</script>
+</body>
+</html>

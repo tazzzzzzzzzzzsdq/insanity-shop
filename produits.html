@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produits — Insanity Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.90)),
+                  url('https://i.imgur.com/UypIotR.png') center/cover fixed;
+      color:#f3f4f6;
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* Snow */
+    #snow { position:fixed; inset:0; pointer-events:none; z-index:0; }
+    .flake { position:absolute; color:#fff; animation:fall linear infinite; user-select:none; }
+    @keyframes fall {
+      from { transform:translateY(-20px) rotate(0deg); opacity:1; }
+      to   { transform:translateY(105vh) rotate(360deg); opacity:0.1; }
+    }
+
+    /* Header */
+    header {
+      position:fixed; top:0; width:100%;
+      padding:16px 8%;
+      display:flex; justify-content:space-between; align-items:center;
+      z-index:1000;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(192,38,211,0.2);
+    }
+    .logo {
+      font-size:1.7rem; font-weight:800;
+      background:linear-gradient(90deg,#c026d3,#a855f7);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      text-decoration:none;
+    }
+    nav { display:flex; gap:10px; }
+    .btn-nav {
+      padding:9px 22px; border-radius:50px;
+      font-size:0.88rem; font-weight:600;
+      border:none; cursor:pointer; text-decoration:none;
+      transition:transform 0.15s;
+      display:inline-block;
+    }
+    .btn-nav:hover { transform:translateY(-2px); }
+    .btn-home    { background:rgba(192,38,211,0.18); color:#d8b4fe;
+                   border:1px solid rgba(192,38,211,0.35); }
+    .btn-discord { background:#5865F2; color:#fff; }
+
+    /* Main */
+    main { padding:120px 8% 80px; position:relative; z-index:1; }
+
+    .page-title { text-align:center; margin-bottom:50px; }
+    .page-title h1 {
+      font-size:clamp(2rem,5vw,3rem); font-weight:800;
+      background:linear-gradient(135deg,#f0abfc,#c4b5fd);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .page-title p { color:#9ca3af; margin-top:8px; font-size:0.95rem; }
+
+    /* Products grid — 2 colonnes fixes */
+    .products-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:24px;
+      max-width:880px;
+      margin:0 auto 60px;
+    }
+    @media(max-width:640px){ .products-grid { grid-template-columns:1fr; } }
+
+    .product-card {
+      background:rgba(22,0,42,0.90);
+      border:1px solid rgba(192,38,211,0.30);
+      border-radius:20px; overflow:hidden;
+      transition:transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+      transform:translateY(-6px);
+      border-color:rgba(192,38,211,0.70);
+      box-shadow:0 14px 44px rgba(192,38,211,0.25);
+    }
+    .product-img {
+      width:100%; height:150px;
+      object-fit:cover; display:block;
+    }
+    .product-body { padding:22px; }
+
+    .badge-row { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:13px; }
+    .badge {
+      padding:3px 12px; border-radius:50px;
+      font-size:0.72rem; font-weight:700; display:inline-block;
+    }
+    .badge-green  { background:#22c55e; color:#000; }
+    .badge-purple { background:rgba(192,38,211,0.22); color:#d8b4fe;
+                    border:1px solid rgba(192,38,211,0.4); }
+    .badge-gray   { background:rgba(255,255,255,0.08); color:#9ca3af; }
+
+    .product-name   { font-size:1.3rem; font-weight:700; margin-bottom:5px; }
+    .product-rating { color:#fbbf24; font-size:0.92rem; margin-bottom:10px; }
+    .product-rating span { color:#9ca3af; font-size:0.78rem; }
+
+    .product-price {
+      font-size:1rem; font-weight:600; color:#d8b4fe;
+      margin-bottom:10px;
+    }
+    .product-desc { color:#9ca3af; font-size:0.85rem; line-height:1.6; margin-bottom:15px; }
+
+    .features { list-style:none; margin-bottom:18px; display:flex; flex-direction:column; gap:6px; }
+    .features li {
+      font-size:0.84rem; color:#d1d5db;
+      display:flex; align-items:center; gap:8px;
+    }
+    .features li::before { content:'✓'; color:#22c55e; font-weight:700; flex-shrink:0; }
+
+    .product-actions { display:flex; gap:9px; flex-wrap:wrap; }
+    .btn-buy {
+      flex:1; padding:11px 14px;
+      background:linear-gradient(90deg,#c026d3,#a855f7);
+      color:#fff; border:none; border-radius:50px;
+      font-size:0.88rem; font-weight:700; cursor:pointer;
+      text-decoration:none; text-align:center;
+      transition:transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-buy:hover { transform:scale(1.03); box-shadow:0 0 20px rgba(192,38,211,0.5); }
+    .btn-info {
+      padding:11px 16px;
+      background:rgba(255,255,255,0.06);
+      color:#d8b4fe; border:1px solid rgba(192,38,211,0.3);
+      border-radius:50px; font-size:0.88rem; font-weight:600;
+      cursor:pointer; transition:background 0.15s;
+    }
+    .btn-info:hover { background:rgba(192,38,211,0.18); }
+
+    /* Modal */
+    .modal-overlay {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,0.80); backdrop-filter:blur(8px);
+      z-index:3000; align-items:center; justify-content:center; padding:20px;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal {
+      background:rgba(16,0,32,0.98);
+      border:1px solid rgba(192,38,211,0.45);
+      border-radius:22px; padding:34px;
+      max-width:540px; width:100%;
+      position:relative;
+      animation:fadeUp 0.25s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .modal h2  { font-size:1.4rem; font-weight:700; color:#e0b0ff; margin-bottom:14px; }
+    .modal p   { color:#9ca3af; font-size:0.88rem; line-height:1.7; margin-bottom:8px; }
+    .modal strong { color:#d8b4fe; }
+    .modal-close {
+      position:absolute; top:14px; right:16px;
+      background:none; border:none; color:#6b7280;
+      font-size:1.3rem; cursor:pointer; transition:color 0.2s;
+    }
+    .modal-close:hover { color:#fff; }
+    .modal-actions { margin-top:20px; display:flex; gap:9px; flex-wrap:wrap; }
+
+    /* FAQ */
+    .faq { max-width:800px; margin:0 auto; padding-bottom:60px; }
+    .faq h2 { text-align:center; font-size:1.8rem; font-weight:700;
+              color:#e0b0ff; margin-bottom:30px; }
+    .faq-list { display:flex; flex-direction:column; gap:11px; }
+    .faq-item {
+      background:rgba(192,38,211,0.10);
+      border:1px solid rgba(192,38,211,0.22);
+      border-radius:13px; overflow:hidden; cursor:pointer;
+      transition:border-color 0.2s;
+    }
+    .faq-item:hover { border-color:rgba(192,38,211,0.5); }
+    .faq-q {
+      padding:16px 20px; display:flex;
+      justify-content:space-between; align-items:center;
+      font-weight:600; font-size:0.95rem;
+    }
+    .faq-q .arrow { color:#a855f7; transition:transform 0.3s; }
+    .faq-a {
+      max-height:0; overflow:hidden;
+      transition:max-height 0.35s ease, padding 0.3s;
+      padding:0 20px; color:#9ca3af; font-size:0.88rem; line-height:1.65;
+    }
+    .faq-item.open .faq-a { max-height:180px; padding:0 20px 16px; }
+    .faq-item.open .arrow { transform:rotate(180deg); }
+
+    /* Cookie banner */
+    #cookie-banner {
+      display:none; position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+      background:rgba(12,0,24,0.96); border:1px solid rgba(192,38,211,0.4);
+      border-radius:14px; padding:16px 22px;
+      z-index:5000; align-items:center; gap:16px;
+      max-width:580px; width:calc(100% - 36px);
+      backdrop-filter:blur(12px);
+      font-size:0.83rem; color:#9ca3af;
+    }
+    #cookie-banner a { color:#a855f7; }
+    #accept-cookies {
+      padding:8px 20px; background:linear-gradient(90deg,#c026d3,#a855f7);
+      color:#fff; border:none; border-radius:50px;
+      font-size:0.83rem; font-weight:600; cursor:pointer; white-space:nowrap;
+    }
+
+    /* Footer */
+    footer {
+      background:rgba(0,0,0,0.7); border-top:1px solid rgba(192,38,211,0.2);
+      padding:24px 8%; text-align:center;
+      color:#4b5563; font-size:0.82rem;
+      position:relative; z-index:1;
+    }
+    footer a { color:#a855f7; text-decoration:none; }
+  </style>
+</head>
+<body>
+
+<div id="snow"></div>
+
+<header>
+  <a href="index.html" class="logo">INSANITY SHOP</a>
+  <nav>
+    <a href="index.html" class="btn-nav btn-home">← Accueil</a>
+    <a href="https://discord.gg/a9bRj8BPy" target="_blank" rel="noopener noreferrer" class="btn-nav btn-discord">Discord</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-title">
+    <h1>Nos Produits</h1>
+    <p>Mis à jour quotidiennement — 0 ban signalé</p>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- ── Injecteur ── -->
+    <div class="product-card">
+      <img class="product-img"
+           src="https://i.imgur.com/sQ7WvZJ.png"
+           alt="Insanity Injecteur"
+           width="440" height="150" loading="lazy">
+      <div class="product-body">
+        <div class="badge-row">
+          <span class="badge badge-green">UNDETECTED</span>
+          <span class="badge badge-purple">Externe</span>
+          <span class="badge badge-gray">Updated today</span>
+        </div>
+        <div class="product-name">Insanity Injecteur</div>
+        <div class="product-rating">★★★★★ <span>5.0 (247 avis)</span></div>
+        <div class="product-price">💬 Prix sur Discord</div>
+        <p class="product-desc">
+          Notre injecteur phare — rapide, stable et indétectable
+          face aux dernières versions des anticheats.
+        </p>
+        <ul class="features">
+          <li>Compatible EAC, BattlEye, Vanguard</li>
+          <li>Mise à jour quotidienne automatique</li>
+          <li>Support 24/7 inclus</li>
+          <li>Installation en moins de 2 min</li>
+          <li>Guide de démarrage fourni</li>
+        </ul>
+        <div class="product-actions">
+          <a href="https://discord.gg/a9bRj8BPy" target="_blank" rel="noopener noreferrer"
+             class="btn-buy">Acheter sur Discord →</a>
+          <button class="btn-info" onclick="openModal('injecteur')">Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Spoofer ── -->
+    <div class="product-card">
+      <img class="product-img"
+           src="https://i.imgur.com/sQ7WvZJ.png"
+           alt="Insanity Spoofer"
+           width="440" height="150" loading="lazy"
+           style="filter:hue-rotate(260deg) saturate(1.3)">
+      <div class="product-body">
+        <div class="badge-row">
+          <span class="badge badge-green">UNDETECTED</span>
+          <span class="badge badge-purple">HWID</span>
+          <span class="badge badge-gray">Permanent</span>
+        </div>
+        <div class="product-name">Insanity Spoofer</div>
+        <div class="product-rating">★★★★★ <span>5.0 (89 avis)</span></div>
+        <div class="product-price">💬 Prix sur Discord</div>
+        <p class="product-desc">
+          Spoofe ton HWID, MAC, Disk et BIOS en quelques secondes
+          pour contourner les bans permanents.
+        </p>
+        <ul class="features">
+          <li>BIOS, CPU, Motherboard, MAC, Disk</li>
+          <li>Spoof permanent ou temporaire</li>
+          <li>Compatible Windows 10 / 11 (x64)</li>
+          <li>Support inclus</li>
+          <li>Résultats immédiats</li>
+        </ul>
+        <div class="product-actions">
+          <a href="https://discord.gg/a9bRj8BPy" target="_blank" rel="noopener noreferrer"
+             class="btn-buy">Acheter sur Discord →</a>
+          <button class="btn-info" onclick="openModal('spoofer')">Info</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /products-grid -->
+
+  <!-- FAQ -->
+  <div class="faq">
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Qu'est-ce qu'un injecteur ? <span class="arrow">▼</span></div>
+        <div class="faq-a">Un injecteur injecte du code dans le processus du jeu de manière externe et indétectable.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Est-ce safe ? <span class="arrow">▼</span></div>
+        <div class="faq-a">Oui. Mis à jour quotidiennement. Aucun ban signalé depuis le lancement.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Comment acheter ? <span class="arrow">▼</span></div>
+        <div class="faq-a">Rejoins le Discord et ouvre un ticket dans #achat. Réponse rapide garantie.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Y a-t-il un remboursement ? <span class="arrow">▼</span></div>
+        <div class="faq-a">Les achats sont définitifs sauf problème technique de notre côté.</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modal-title"></h2>
+    <div id="modal-body"></div>
+    <div class="modal-actions">
+      <a href="https://discord.gg/a9bRj8BPy" target="_blank" rel="noopener noreferrer"
+         class="btn-buy">Acheter sur Discord</a>
+      <button class="btn-info" onclick="closeModal()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Insanity Shop ·
+  <a href="index.html">Accueil</a> ·
+  <a href="https://discord.gg/a9bRj8BPy" target="_blank" rel="noopener noreferrer">Discord</a>
+</footer>
+
+<!-- Cookie banner -->
+<div id="cookie-banner">
+  <span>Ce site utilise des cookies.</span>
+  <button id="accept-cookies">Accepter</button>
+</div>
+
+<script>
+  // ── Snow ──
+  const snow = document.getElementById('snow');
+  for (let i = 0; i < 80; i++) {
+    const f = document.createElement('div');
+    f.className = 'flake';
+    f.textContent = '•';
+    f.style.cssText = `
+      left:${Math.random()*100}vw;
+      top:${Math.random()*-200}px;
+      font-size:${Math.random()*8+5}px;
+      opacity:${Math.random()*0.35+0.15};
+      animation-duration:${Math.random()*10+8}s;
+      animation-delay:${Math.random()*-25}s;
+    `;
+    snow.appendChild(f);
+  }
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Modal ──
+  const modals = {
+    injecteur: {
+      title: 'Insanity Injecteur',
+      body: `
+        <p>Notre injecteur phare — injection externe, indétectable.</p>
+        <p><strong>Compatible :</strong> Fortnite, Warzone, Apex Legends, Valorant, Rust</p>
+        <p><strong>Anticheat :</strong> EasyAntiCheat, BattlEye, Vanguard</p>
+        <p><strong>Mise à jour :</strong> Quotidienne, automatique</p>
+        <p>Ouvre un ticket sur notre Discord pour obtenir le prix et finaliser l'achat.</p>
+      `
+    },
+    spoofer: {
+      title: 'Insanity Spoofer',
+      body: `
+        <p>Randomise tous tes identifiants matériels pour contourner les bans HWID permanents.</p>
+        <p><strong>Composants spoofés :</strong> BIOS, CPU, Motherboard, smBIOS, MAC, Disk</p>
+        <p><strong>OS :</strong> Windows 10 / 11 (x64)</p>
+        <p><strong>Mode :</strong> Permanent ou temporaire</p>
+        <p>Ouvre un ticket sur notre Discord pour obtenir le prix et finaliser l'achat.</p>
+      `
+    }
+  };
+
+  function openModal(id) {
+    const m = modals[id];
+    document.getElementById('modal-title').textContent = m.title;
+    document.getElementById('modal-body').innerHTML = m.body;
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) closeModal();
+  });
+
+  // ── Cookie banner ──
+  if (!localStorage.getItem('cookies_ok')) {
+    document.getElementById('cookie-banner').style.display = 'flex';
+    document.getElementById('accept-cookies').addEventListener('click', () => {
+      localStorage.setItem('cookies_ok', '1');
+      document.getElementById('cookie-banner').style.display = 'none';
+    });
+  }
+</script>
+</body>
+</html>

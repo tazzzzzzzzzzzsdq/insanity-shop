@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Insanity Shop</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    main { padding:130px 8% 80px; position:relative; z-index:1; }
+    h1 { font-size:clamp(2rem,5vw,3rem); font-weight:800; text-align:center; margin-bottom:8px;
+      background:linear-gradient(135deg,#f0abfc,#c4b5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .subtitle { text-align:center; color:var(--muted); margin-bottom:52px; }
+    .faq-section { margin-bottom:48px; }
+    .faq-section-title { font-size:1rem; font-weight:700; color:#a855f7; letter-spacing:2px;
+      text-transform:uppercase; margin-bottom:16px; }
+  </style>
+</head>
+<body>
+<div id="snow"></div>
+<header>
+  <a href="index.html" class="logo" data-sitename>INSANITY SHOP</a>
+  <nav>
+    <a href="index.html" class="btn-nav btn-home">← Accueil</a>
+    <a href="produits.html" class="btn-nav btn-products">Produits</a>
+    <a href="#" class="btn-nav btn-discord" data-discord rel="noopener noreferrer" target="_blank">Discord</a>
+  </nav>
+</header>
+
+<main>
+  <h1 data-reveal>FAQ</h1>
+  <p class="subtitle" data-reveal>Toutes les réponses à vos questions</p>
+
+  <div class="faq-section" data-reveal>
+    <div class="faq-section-title">📦 Produits</div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Qu'est-ce qu'Insanity Shop ? <span class="arrow">▼</span></div><div class="faq-a">Une boutique de logiciels undetected pour jeux compétitifs. Tous nos outils sont mis à jour quotidiennement.</div></div>
+      <div class="faq-item"><div class="faq-q">Qu'est-ce qu'un injecteur ? <span class="arrow">▼</span></div><div class="faq-a">Un injecteur injecte du code (DLL) dans un processus de jeu de façon externe et indétectable pour ajouter des fonctionnalités.</div></div>
+      <div class="faq-item"><div class="faq-q">Qu'est-ce qu'un spoofer HWID ? <span class="arrow">▼</span></div><div class="faq-a">Un spoofer modifie tes identifiants matériels (BIOS, MAC, Disk, CPU...) pour contourner les bans permanents basés sur le hardware.</div></div>
+      <div class="faq-item"><div class="faq-q">Quels jeux sont supportés ? <span class="arrow">▼</span></div><div class="faq-a">Fortnite, Warzone, Apex Legends, Valorant, Rust, PUBG. Consulte la page Status pour l'état en temps réel.</div></div>
+    </div>
+  </div>
+
+  <div class="faq-section" data-reveal>
+    <div class="faq-section-title">🔒 Sécurité</div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Est-ce safe d'utiliser ces produits ? <span class="arrow">▼</span></div><div class="faq-a">Oui. Nos produits sont mis à jour quotidiennement pour contrer les dernières versions des anticheats. Aucun ban signalé depuis le lancement.</div></div>
+      <div class="faq-item"><div class="faq-q">Mon antivirus détecte le fichier — est-ce normal ? <span class="arrow">▼</span></div><div class="faq-a">Oui, c'est un faux positif fréquent avec les injecteurs. Ajoute une exception dans ton antivirus. Le fichier est sain.</div></div>
+      <div class="faq-item"><div class="faq-q">Quelle configuration est requise ? <span class="arrow">▼</span></div><div class="faq-a">Windows 10 ou 11 (x64), droits administrateur recommandés. Pas de configuration matérielle spécifique requise.</div></div>
+    </div>
+  </div>
+
+  <div class="faq-section" data-reveal>
+    <div class="faq-section-title">💳 Achat & Support</div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">Comment acheter ? <span class="arrow">▼</span></div><div class="faq-a">Rejoins le Discord, ouvre un ticket dans #achat, notre équipe te guide pour finaliser l'achat et la livraison.</div></div>
+      <div class="faq-item"><div class="faq-q">Quels moyens de paiement acceptez-vous ? <span class="arrow">▼</span></div><div class="faq-a">Les moyens de paiement disponibles sont indiqués lors de l'ouverture du ticket sur Discord.</div></div>
+      <div class="faq-item"><div class="faq-q">Y a-t-il un remboursement ? <span class="arrow">▼</span></div><div class="faq-a">Les achats sont définitifs sauf problème technique de notre côté. Notre support résout tout problème rencontré.</div></div>
+      <div class="faq-item"><div class="faq-q">Comment contacter le support ? <span class="arrow">▼</span></div><div class="faq-a">Via Discord uniquement. Support disponible 24h/24, 7j/7. Réponse en général en moins de 30 minutes.</div></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 <span data-sitename>Insanity Shop</span></span>
+  <span><a href="index.html">Accueil</a> · <a href="produits.html">Produits</a> · <a href="status.html">Status</a> · <a href="cgv.html">CGV</a> · <a href="#" data-discord rel="noopener noreferrer" target="_blank">Discord</a></span>
+  <span>For educational purposes only</span>
+</footer>
+<div id="cookie-banner"><span>Ce site utilise des cookies. <a href="cgv.html">En savoir plus</a></span><button id="accept-cookies">Accepter</button></div>
+<script src="config.js"></script>
+<script src="shared.js"></script>
+</body>
+</html>

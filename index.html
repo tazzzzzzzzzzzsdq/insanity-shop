@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Insanity Shop — logiciels undetected pour Fortnite, Warzone, Valorant. Mise à jour quotidienne, support 24/7.">
+  <title>Insanity Shop — Undetected Tools</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      text-align:center; padding:130px 8% 70px;
+      position:relative; z-index:1;
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(192,38,211,0.16);
+      border:1px solid rgba(192,38,211,0.38);
+      padding:6px 18px; border-radius:50px;
+      font-size:0.82rem; color:#d8b4fe;
+      margin-bottom:26px;
+    }
+    .hero-badge .dot { width:8px; height:8px; background:#22c55e;
+      border-radius:50%; animation:blink 1.8s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+    .hero h1 {
+      font-size:clamp(2.8rem,7vw,5.6rem); font-weight:800; line-height:1.05;
+      background:linear-gradient(135deg,#f0abfc 0%,#e0b0ff 50%,#c4b5fd 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      margin-bottom:18px;
+    }
+    .hero p {
+      font-size:clamp(0.95rem,2.2vw,1.3rem); color:#c4b5fd;
+      margin-bottom:36px; max-width:540px;
+    }
+    .hero-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .btn-main {
+      padding:15px 52px;
+      background:linear-gradient(90deg,#c026d3,#a855f7);
+      color:#fff; border-radius:50px; font-size:1.05rem; font-weight:700;
+      border:none; cursor:pointer; text-decoration:none;
+      box-shadow:0 0 26px rgba(192,38,211,0.45);
+      animation:pulse 2.4s ease-in-out infinite;
+      transition:transform 0.15s;
+    }
+    .btn-main:hover { transform:scale(1.04); }
+    .btn-outline {
+      padding:15px 38px;
+      background:transparent; color:#d8b4fe;
+      border:2px solid rgba(192,38,211,0.45);
+      border-radius:50px; font-size:1.05rem; font-weight:600;
+      cursor:pointer; text-decoration:none;
+      transition:border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color:#c026d3; color:#fff; transform:scale(1.04); }
+    @keyframes pulse {
+      0%,100%{box-shadow:0 0 26px rgba(192,38,211,0.45);}
+      50%{box-shadow:0 0 50px rgba(192,38,211,0.85);}
+    }
+
+    /* ── STATS ── */
+    .stats {
+      background:rgba(0,0,0,0.58);
+      backdrop-filter:blur(10px);
+      border-top:1px solid var(--sep);
+      border-bottom:1px solid var(--sep);
+      padding:32px 8%;
+      display:flex; justify-content:center; gap:60px; flex-wrap:wrap;
+      position:relative; z-index:1;
+    }
+    .stat { text-align:center; }
+    .stat .num { font-size:2.2rem; font-weight:800; color:#c026d3; min-width:90px; display:block; }
+    .stat .lbl { font-size:0.82rem; color:var(--muted); margin-top:3px; }
+
+    /* ── STATUS ── */
+    .status-section {
+      padding:60px 8%; background:rgba(0,0,0,0.52);
+      position:relative; z-index:1;
+    }
+    .status-section h2 { text-align:center; font-size:1.8rem; font-weight:700;
+      color:#e0b0ff; margin-bottom:32px; }
+    .status-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+      gap:14px; max-width:900px; margin:0 auto;
+    }
+    .status-card {
+      background:rgba(22,0,42,0.7);
+      border:1px solid rgba(192,38,211,0.22);
+      border-radius:12px; padding:16px 18px;
+      display:flex; align-items:center; gap:12px;
+      transition:border-color 0.2s;
+    }
+    .status-card:hover { border-color:rgba(192,38,211,0.5); }
+    .status-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+    .dot-green { background:#22c55e; box-shadow:0 0 8px #22c55e; }
+    .dot-yellow { background:#f59e0b; box-shadow:0 0 8px #f59e0b; }
+    .dot-red { background:#ef4444; box-shadow:0 0 8px #ef4444; }
+    .status-name { font-size:0.9rem; font-weight:600; }
+    .status-label { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding:70px 8%; background:rgba(0,0,0,0.45);
+      position:relative; z-index:1;
+    }
+    .how h2 { text-align:center; font-size:1.8rem; font-weight:700;
+      color:#e0b0ff; margin-bottom:48px; }
+    .steps {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:24px; max-width:900px; margin:0 auto;
+    }
+    .step {
+      background:rgba(22,0,42,0.7);
+      border:1px solid rgba(192,38,211,0.22);
+      border-radius:16px; padding:28px 22px; text-align:center;
+      transition:transform 0.2s, border-color 0.2s;
+    }
+    .step:hover { transform:translateY(-4px); border-color:rgba(192,38,211,0.5); }
+    .step-num {
+      width:48px; height:48px; border-radius:50%;
+      background:linear-gradient(135deg,#c026d3,#a855f7);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; font-weight:800; margin:0 auto 16px;
+    }
+    .step h3 { font-size:1rem; font-weight:700; margin-bottom:8px; color:#e0b0ff; }
+    .step p  { font-size:0.85rem; color:var(--muted); line-height:1.6; }
+
+    /* ── REVIEWS ── */
+    .reviews {
+      padding:60px 0 50px;
+      background:rgba(0,0,0,0.5);
+      overflow:hidden; position:relative; z-index:1;
+    }
+    .reviews h2 { text-align:center; font-size:1.7rem; font-weight:700;
+      color:#e0b0ff; margin-bottom:28px; letter-spacing:2px; }
+    .review-track { display:flex; gap:18px; width:max-content; }
+    .review-card {
+      background:rgba(192,38,211,0.1);
+      border:1px solid rgba(192,38,211,0.22);
+      padding:20px 22px; border-radius:16px;
+      min-width:280px; max-width:280px;
+      transition:border-color 0.2s;
+    }
+    .review-card:hover { border-color:rgba(192,38,211,0.55); }
+    .r-stars { color:#fbbf24; font-size:1rem; margin-bottom:8px; }
+    .r-text  { font-size:0.87rem; color:#e5e7eb; line-height:1.5; margin-bottom:12px; }
+    .r-author { display:flex; align-items:center; gap:10px; }
+    .r-avatar {
+      width:32px; height:32px; border-radius:50%;
+      background:linear-gradient(135deg,#c026d3,#a855f7);
+      display:flex; align-items:center; justify-content:center;
+      font-size:0.75rem; font-weight:700; flex-shrink:0;
+    }
+    .r-name { font-size:0.82rem; color:var(--muted); }
+    .r-date { font-size:0.72rem; color:#4b5563; }
+  </style>
+</head>
+<body>
+<div id="snow"></div>
+
+<header>
+  <a href="index.html" class="logo" data-sitename>INSANITY SHOP</a>
+  <nav>
+    <a href="status.html" class="btn-nav btn-home">Status</a>
+    <a href="produits.html" class="btn-nav btn-products">Produits</a>
+    <a href="#" class="btn-nav btn-discord" data-discord rel="noopener noreferrer" target="_blank">Discord</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge" data-reveal><div class="dot"></div> Actuellement UNDETECTED</div>
+  <h1 data-reveal data-delay="1">Insanity Shop</h1>
+  <p data-reveal data-delay="2">Undetected · Externe · Conçu pour dominer chaque partie</p>
+  <div class="hero-btns" data-reveal data-delay="3">
+    <a href="produits.html" class="btn-main">ACHETER MAINTENANT</a>
+    <a href="#" class="btn-outline" data-discord rel="noopener noreferrer" target="_blank">Rejoindre Discord</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat" data-reveal><span class="num" data-counter="1247">0</span><div class="lbl">Utilisateurs actifs</div></div>
+  <div class="stat" data-reveal data-delay="1"><span class="num" data-counter-text="99.8%">99.8%</span><div class="lbl">Uptime</div></div>
+  <div class="stat" data-reveal data-delay="2"><span class="num" data-counter="0">0</span><div class="lbl">Bans détectés</div></div>
+  <div class="stat" data-reveal data-delay="3"><span class="num" data-counter-text="24/7">24/7</span><div class="lbl">Support Discord</div></div>
+</div>
+
+<!-- STATUS -->
+<section class="status-section">
+  <h2 data-reveal>⚡ Status en temps réel</h2>
+  <div class="status-grid">
+    <div class="status-card" data-reveal><div class="status-dot dot-green"></div><div><div class="status-name">Fortnite</div><div class="status-label">Undetected</div></div></div>
+    <div class="status-card" data-reveal data-delay="1"><div class="status-dot dot-green"></div><div><div class="status-name">Warzone</div><div class="status-label">Undetected</div></div></div>
+    <div class="status-card" data-reveal data-delay="1"><div class="status-dot dot-green"></div><div><div class="status-name">Apex Legends</div><div class="status-label">Undetected</div></div></div>
+    <div class="status-card" data-reveal data-delay="2"><div class="status-dot dot-green"></div><div><div class="status-name">Valorant</div><div class="status-label">Undetected</div></div></div>
+    <div class="status-card" data-reveal data-delay="2"><div class="status-dot dot-green"></div><div><div class="status-name">Rust</div><div class="status-label">Undetected</div></div></div>
+    <div class="status-card" data-reveal data-delay="3"><div class="status-dot dot-green"></div><div><div class="status-name">PUBG</div><div class="status-label">Undetected</div></div></div>
+    <div class="status-card" data-reveal data-delay="3"><div class="status-dot dot-green"></div><div><div class="status-name">Serveurs</div><div class="status-label">Opérationnels</div></div></div>
+    <div class="status-card" data-reveal data-delay="4"><div class="status-dot dot-green"></div><div><div class="status-name">Support</div><div class="status-label">En ligne</div></div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <h2 data-reveal>Comment ça marche ?</h2>
+  <div class="steps">
+    <div class="step" data-reveal><div class="step-num">1</div><h3>Rejoins le Discord</h3><p>Ouvre un ticket dans notre serveur et choisis ton produit.</p></div>
+    <div class="step" data-reveal data-delay="1"><div class="step-num">2</div><h3>Finalise l'achat</h3><p>Paiement sécurisé, livraison instantanée après confirmation.</p></div>
+    <div class="step" data-reveal data-delay="2"><div class="step-num">3</div><h3>Télécharge & Lance</h3><p>Installation en moins de 2 minutes, guide inclus.</p></div>
+    <div class="step" data-reveal data-delay="3"><div class="step-num">4</div><h3>Domine</h3><p>Profite de ton avantage, mis à jour quotidiennement.</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<div class="reviews">
+  <h2>⭐ AVIS CLIENTS</h2>
+  <div class="review-track" id="reviewTrack"></div>
+</div>
+
+<!-- FAQ -->
+<section class="faq" data-reveal>
+  <h2>FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q">Qu'est-ce qu'Insanity Shop ? <span class="arrow">▼</span></div><div class="faq-a">Une boutique de logiciels undetected pour jeux compétitifs, mise à jour en permanence.</div></div>
+    <div class="faq-item"><div class="faq-q">Est-ce safe ? <span class="arrow">▼</span></div><div class="faq-a">Oui. Mises à jour quotidiennes contre les dernières versions des anticheats. Aucun ban signalé.</div></div>
+    <div class="faq-item"><div class="faq-q">Comment acheter ? <span class="arrow">▼</span></div><div class="faq-a">Rejoins le Discord, ouvre un ticket, notre équipe te guide pour finaliser l'achat.</div></div>
+    <div class="faq-item"><div class="faq-q">Quels jeux sont supportés ? <span class="arrow">▼</span></div><div class="faq-a">Fortnite, Warzone, Apex, Valorant, Rust, PUBG et plus.</div></div>
+    <div class="faq-item"><div class="faq-q">Y a-t-il un support ? <span class="arrow">▼</span></div><div class="faq-a">Support Discord 24/7, réponse en général en moins de 30 minutes.</div></div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 <span data-sitename>Insanity Shop</span></span>
+  <span>
+    <a href="index.html">Accueil</a> ·
+    <a href="produits.html">Produits</a> ·
+    <a href="status.html">Status</a> ·
+    <a href="faq.html">FAQ</a> ·
+    <a href="cgv.html">CGV</a> ·
+    <a href="#" data-discord rel="noopener noreferrer" target="_blank">Discord</a>
+  </span>
+  <span>For educational purposes only</span>
+</footer>
+
+<!-- Cookie banner -->
+<div id="cookie-banner">
+  <span>Ce site utilise des cookies. <a href="cgv.html">En savoir plus</a></span>
+  <button id="accept-cookies">Accepter</button>
+</div>
+
+<script src="config.js"></script>
+<script src="shared.js"></script>
+<script>
+  // Reviews
+  const reviews = [
+    {name:'taz',      text:'Le meilleur injecteur que j\'ai testé !',  date:'28/06/2026'},
+    {name:'toinglag', text:'Stable et undetected depuis 1 mois',       date:'27/06/2026'},
+    {name:'neyzox',   text:'Support rapide et efficace',               date:'26/06/2026'},
+    {name:'skyy',     text:'Interface super fluide',                   date:'25/06/2026'},
+    {name:'zro',      text:'Mises à jour très rapides',                date:'24/06/2026'},
+    {name:'shox',     text:'Meilleur rapport qualité/prix',            date:'23/06/2026'},
+    {name:'kennyS',   text:'Parfait sur Fortnite',                     date:'22/06/2026'},
+    {name:'apex',     text:'Très bon service client',                  date:'21/06/2026'},
+    {name:'zerator',  text:'Jamais eu de ban',                         date:'20/06/2026'},
+    {name:'gotaga',   text:'Super pour Warzone',                       date:'19/06/2026'},
+    {name:'scream',   text:'Le plus rapide que j\'ai vu',              date:'18/06/2026'},
+    {name:'tenz',     text:'★★★★☆ Très bon pour Valorant',            date:'17/06/2026'},
+    {name:'shroud',   text:'Support Discord très réactif',             date:'16/06/2026'},
+    {name:'ninja',    text:'Jamais eu de soucis',                      date:'15/06/2026'},
+    {name:'locklear', text:'Wallah c\'est réel fr',                    date:'14/06/2026'},
+    {name:'doigby',   text:'★★★★☆ Achetez, vous regretterez pas',     date:'13/06/2026'},
+    {name:'inou',     text:'Incroyable, rien à dire',                  date:'12/06/2026'},
+    {name:'baghera',  text:'Équipe très réactive',                     date:'11/06/2026'},
+    {name:'kameto',   text:'100% legit',                               date:'10/06/2026'},
+    {name:'ponce',    text:'Jamais eu de ban depuis le début',         date:'09/06/2026'},
+  ];
+  const track = document.getElementById('reviewTrack');
+  [...reviews,...reviews].forEach(r => {
+    const stars = r.text.startsWith('★★★★☆') ? '' : '★★★★★';
+    const text  = r.text.replace(/^★★★★☆\s*/,'');
+    const card  = document.createElement('div');
+    card.className = 'review-card';
+    card.innerHTML = `
+      <div class="r-stars">${stars || '★★★★☆'}</div>
+      <div class="r-text">"${text}"</div>
+      <div class="r-author">
+        <div class="r-avatar">${r.name.slice(0,2).toUpperCase()}</div>
+        <div><div class="r-name">${r.name}</div><div class="r-date">${r.date}</div></div>
+      </div>`;
+    track.appendChild(card);
+  });
+  let pos=0;
+  function scrollReviews() {
+    pos-=1.3;
+    const half=track.scrollWidth/2;
+    if(Math.abs(pos)>=half) pos=0;
+    track.style.transform=`translateX(${pos}px)`;
+    requestAnimationFrame(scrollReviews);
+  }
+  scrollReviews();
+
+  // Animated counters (trigger when stat section visible)
+  const counters = document.querySelectorAll('[data-counter]');
+  const counterObs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target;
+        animateCounter(el, parseInt(el.dataset.counter));
+        counterObs.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  counters.forEach(c=>counterObs.observe(c));
+</script>
+</body>
+</html>

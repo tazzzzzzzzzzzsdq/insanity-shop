@@ -77,67 +77,99 @@
     @media(max-width:640px){ .products-grid { grid-template-columns:1fr; } }
 
     .product-card {
-      background:rgba(22,0,42,0.90);
-      border:1px solid rgba(192,38,211,0.30);
+      background:rgba(22,0,42,0.95);
+      border:1px solid rgba(120,40,180,0.4);
       border-radius:20px; overflow:hidden;
-      transition:transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      transition:transform 0.2s, box-shadow 0.2s;
     }
     .product-card:hover {
       transform:translateY(-6px);
-      border-color:rgba(192,38,211,0.70);
-      box-shadow:0 14px 44px rgba(192,38,211,0.25);
+      box-shadow:0 16px 48px rgba(150,50,220,0.3);
+    }
+
+    /* Image zone — fond violet dégradé comme VELO */
+    .product-img-wrap {
+      position:relative;
+      background:linear-gradient(135deg,#2d0057 0%,#1a0038 60%,#0d001f 100%);
+      height:180px;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .product-img-wrap::before {
+      content:'';
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 40%, rgba(160,60,255,0.25) 0%, transparent 70%);
     }
     .product-img {
-      width:100%; height:150px;
-      object-fit:cover; display:block;
+      max-height:160px; max-width:80%;
+      object-fit:contain; display:block;
+      position:relative; z-index:1;
+      filter:drop-shadow(0 0 20px rgba(160,80,255,0.5));
     }
+    .badge-undetected {
+      position:absolute; top:14px; right:14px; z-index:2;
+      background:rgba(140,60,220,0.85);
+      border:1px solid rgba(180,100,255,0.6);
+      backdrop-filter:blur(6px);
+      padding:5px 14px; border-radius:50px;
+      font-size:0.72rem; font-weight:700; color:#fff;
+      letter-spacing:0.5px;
+    }
+
     .product-body { padding:22px; }
 
-    .badge-row { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:13px; }
+    .badge-row { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
     .badge {
-      padding:3px 12px; border-radius:50px;
+      padding:4px 13px; border-radius:50px;
       font-size:0.72rem; font-weight:700; display:inline-block;
     }
     .badge-green  { background:#22c55e; color:#000; }
-    .badge-purple { background:rgba(192,38,211,0.22); color:#d8b4fe;
-                    border:1px solid rgba(192,38,211,0.4); }
-    .badge-gray   { background:rgba(255,255,255,0.08); color:#9ca3af; }
+    .badge-purple { background:rgba(140,60,220,0.3); color:#d8b4fe;
+                    border:1px solid rgba(160,80,255,0.4); }
+    .badge-gray   { background:rgba(255,255,255,0.08); color:#9ca3af;
+                    border:1px solid rgba(255,255,255,0.1); }
 
-    .product-name   { font-size:1.3rem; font-weight:700; margin-bottom:5px; }
+    .product-name   { font-size:1.35rem; font-weight:700; margin-bottom:6px; color:#fff; }
     .product-rating { color:#fbbf24; font-size:0.92rem; margin-bottom:10px; }
     .product-rating span { color:#9ca3af; font-size:0.78rem; }
 
     .product-price {
-      font-size:1rem; font-weight:600; color:#d8b4fe;
-      margin-bottom:10px;
+      font-size:0.95rem; font-weight:600;
+      color:#c084fc; margin-bottom:12px;
+      display:flex; align-items:center; gap:6px;
     }
-    .product-desc { color:#9ca3af; font-size:0.85rem; line-height:1.6; margin-bottom:15px; }
+
+    /* Separator */
+    .product-sep { border:none; border-top:1px solid rgba(120,40,180,0.3); margin:14px 0; }
+
+    .product-desc { color:#9ca3af; font-size:0.84rem; line-height:1.6; margin-bottom:14px; }
 
     .features { list-style:none; margin-bottom:18px; display:flex; flex-direction:column; gap:6px; }
     .features li {
       font-size:0.84rem; color:#d1d5db;
       display:flex; align-items:center; gap:8px;
     }
-    .features li::before { content:'✓'; color:#22c55e; font-weight:700; flex-shrink:0; }
+    .features li::before { content:'✓'; color:#a855f7; font-weight:700; flex-shrink:0; }
 
-    .product-actions { display:flex; gap:9px; flex-wrap:wrap; }
+    .product-actions { display:flex; gap:9px; align-items:center; }
     .btn-buy {
-      flex:1; padding:11px 14px;
-      background:linear-gradient(90deg,#c026d3,#a855f7);
+      flex:1; padding:13px 16px;
+      background:linear-gradient(90deg,#9333ea,#c026d3);
       color:#fff; border:none; border-radius:50px;
-      font-size:0.88rem; font-weight:700; cursor:pointer;
+      font-size:0.9rem; font-weight:700; cursor:pointer;
       text-decoration:none; text-align:center;
       transition:transform 0.15s, box-shadow 0.15s;
+      box-shadow:0 4px 20px rgba(147,51,234,0.4);
     }
-    .btn-buy:hover { transform:scale(1.03); box-shadow:0 0 20px rgba(192,38,211,0.5); }
+    .btn-buy:hover { transform:scale(1.03); box-shadow:0 6px 28px rgba(147,51,234,0.6); }
     .btn-info {
-      padding:11px 16px;
-      background:rgba(255,255,255,0.06);
-      color:#d8b4fe; border:1px solid rgba(192,38,211,0.3);
-      border-radius:50px; font-size:0.88rem; font-weight:600;
-      cursor:pointer; transition:background 0.15s;
+      padding:13px 18px;
+      background:rgba(255,255,255,0.08);
+      color:#d8b4fe; border:1px solid rgba(160,80,255,0.3);
+      border-radius:50px; font-size:0.9rem; font-weight:600;
+      cursor:pointer; transition:background 0.15s; white-space:nowrap;
     }
-    .btn-info:hover { background:rgba(192,38,211,0.18); }
+    .btn-info:hover { background:rgba(160,80,255,0.2); }
 
     /* Modal */
     .modal-overlay {
@@ -244,19 +276,21 @@
 
     <!-- ── Injecteur ── -->
     <div class="product-card">
-      <img class="product-img"
-           src="https://i.imgur.com/sQ7WvZJ.png"
-           alt="Insanity Injecteur"
-           width="440" height="150" loading="lazy">
+      <div class="product-img-wrap">
+        <span class="badge-undetected">UNDETECTED</span>
+        <img class="product-img"
+             src="https://i.imgur.com/sQ7WvZJ.png"
+             alt="Insanity Injecteur" loading="lazy">
+      </div>
       <div class="product-body">
         <div class="badge-row">
-          <span class="badge badge-green">UNDETECTED</span>
           <span class="badge badge-purple">Externe</span>
           <span class="badge badge-gray">Updated today</span>
         </div>
         <div class="product-name">Insanity Injecteur</div>
         <div class="product-rating">★★★★★ <span>5.0 (247 avis)</span></div>
         <div class="product-price">💬 Prix sur Discord</div>
+        <hr class="product-sep">
         <p class="product-desc">
           Notre injecteur phare — rapide, stable et indétectable
           face aux dernières versions des anticheats.
@@ -278,20 +312,22 @@
 
     <!-- ── Spoofer ── -->
     <div class="product-card">
-      <img class="product-img"
-           src="https://i.imgur.com/sQ7WvZJ.png"
-           alt="Insanity Spoofer"
-           width="440" height="150" loading="lazy"
-           style="filter:hue-rotate(260deg) saturate(1.3)">
+      <div class="product-img-wrap" style="background:linear-gradient(135deg,#003348 0%,#001a30 60%,#000d1f 100%);">
+        <span class="badge-undetected" style="background:rgba(0,140,180,0.85);border-color:rgba(0,200,255,0.4);">UNDETECTED</span>
+        <img class="product-img"
+             src="https://i.imgur.com/sQ7WvZJ.png"
+             alt="Insanity Spoofer" loading="lazy"
+             style="filter:drop-shadow(0 0 20px rgba(0,200,255,0.5)) hue-rotate(170deg) saturate(1.4)">
+      </div>
       <div class="product-body">
         <div class="badge-row">
-          <span class="badge badge-green">UNDETECTED</span>
           <span class="badge badge-purple">HWID</span>
           <span class="badge badge-gray">Permanent</span>
         </div>
         <div class="product-name">Insanity Spoofer</div>
         <div class="product-rating">★★★★★ <span>5.0 (89 avis)</span></div>
         <div class="product-price">💬 Prix sur Discord</div>
+        <hr class="product-sep">
         <p class="product-desc">
           Spoofe ton HWID, MAC, Disk et BIOS en quelques secondes
           pour contourner les bans permanents.

@@ -14,10 +14,9 @@
     .page-title h1 {
       font-size:clamp(2rem,5vw,3.2rem); font-weight:800;
       background:linear-gradient(135deg,#f0abfc,#c4b5fd);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
     }
     .page-title p { color:var(--muted); margin-top:8px; }
-
     .products-grid {
       display:grid;
       grid-template-columns:repeat(2,1fr);
@@ -25,9 +24,7 @@
       max-width:900px;
       margin:0 auto 70px;
     }
-    @media(max-width:640px){
-      .products-grid { grid-template-columns:1fr; }
-    }
+    @media(max-width:640px){ .products-grid { grid-template-columns:1fr; } }
     .product-card {
       background:rgba(22,0,42,0.88);
       border:1px solid rgba(192,38,211,0.28);
@@ -48,11 +45,10 @@
     .product-price {
       font-size:1.6rem; font-weight:800;
       background:linear-gradient(90deg,#c026d3,#a855f7);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
       margin-bottom:12px;
     }
-    .product-price small { font-size:0.85rem; color:var(--muted); font-weight:400;
-      -webkit-text-fill-color:var(--muted); }
+    .product-price small { font-size:0.85rem; color:var(--muted); font-weight:400; -webkit-text-fill-color:var(--muted); }
     .product-desc { color:var(--muted); font-size:0.87rem; line-height:1.6; margin-bottom:16px; }
     .features { list-style:none; margin-bottom:20px; display:flex; flex-direction:column; gap:7px; }
     .features li { font-size:0.87rem; color:#d1d5db; display:flex; align-items:center; gap:8px; }
@@ -76,8 +72,6 @@
     }
     .btn-info:hover { background:rgba(192,38,211,0.15); }
     .badge-yellow { background:#f59e0b; color:#000; }
-
-    /* Modal */
     .modal-overlay {
       display:none; position:fixed; inset:0;
       background:rgba(0,0,0,0.78); backdrop-filter:blur(8px);
@@ -124,6 +118,8 @@
   </div>
 
   <div class="products-grid">
+
+    <!-- Injecteur -->
     <div class="product-card" data-reveal>
       <img class="product-img" src="https://i.imgur.com/sQ7WvZJ.png" alt="Insanity Injecteur" width="520" height="150" loading="lazy">
       <div class="product-body">
@@ -150,6 +146,7 @@
       </div>
     </div>
 
+    <!-- Spoofer -->
     <div class="product-card" data-reveal data-delay="1">
       <img class="product-img" src="https://i.imgur.com/M12fYZD.png" alt="Insanity Spoofer" width="520" height="150" loading="lazy">
       <div class="product-body">
@@ -175,6 +172,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Fluxo PvP -->
     <div class="product-card" data-reveal data-delay="2">
       <img class="product-img" src="https://i.imgur.com/sQ7WvZJ.png" alt="Insanity Script Fluxo PvP" width="520" height="150" loading="lazy"
            style="filter:hue-rotate(120deg) saturate(1.4)">
@@ -201,6 +200,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- FAQ -->
